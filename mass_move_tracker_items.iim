@@ -4,7 +4,6 @@ SET !VAR1 525
 SET !VAR2 dipsin_tamedia
 
 
-VERSION BUILD=7031111 RECORDER=FX
 TAB T=1
 'Start the program while looking at the tracker items list you want to move
 URL GOTO={{!URLCURRENT}}
@@ -16,7 +15,5 @@ TAG POS=1 TYPE=A ATTR=TXT:Move<SP>item
 SET !EXTRACT ""
 SEARCH SOURCE=REGEXP:"Move the item \\'\\[\\#([0-9]*)\\] " EXTRACT="$1"
 'Move tracker item to the new tracker configured at the top
-TAG POS=1 TYPE=INPUT:RADIO
-FORM=ACTION:/gf/project/{{!VAR2}}/tracker/?action=TrackerItemMoveAction&tracker_item_id={{!EXTRACT}}
-ATTR=NAME:to_tracker_id&&VALUE:{{!VAR1}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=ACTION:/gf/project/{{!VAR2}}/tracker/?action=TrackerItemMoveAction&tracker_item_id={{!EXTRACT}} ATTR=NAME:to_tracker_id&&VALUE:{{!VAR1}}
 TAG POS=1 TYPE=SPAN ATTR=TXT:Move<SP>item
